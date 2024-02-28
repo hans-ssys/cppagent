@@ -15,7 +15,9 @@ class MqttcppConan(ConanFile):
     exports_sources = "include/*"
 
     def source(self):
-        get(self, "https://github.com/redboltz/mqtt_cpp/archive/refs/tags/v%s.zip" % self.version, \
+        #get(self, "https://github.com/redboltz/mqtt_cpp/archive/refs/tags/v%s.zip" % self.version, \
+        #    strip_root=True, destination=self.source_folder)
+        get(self, "http://chitin-rh/pub/mtconnect-src-mirror/mqtt_cpp/v%s.zip" % self.version, \
             strip_root=True, destination=self.source_folder)
 
     def package_info(self):

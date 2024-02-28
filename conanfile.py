@@ -72,8 +72,8 @@ class MTConnectAgentConan(ConanFile):
         }
 
     exports_sources = "*", "!build", "!test_package/build", "!*~"
-    exports = "conan/mqtt_cpp/*", "conan/mruby/*"
-
+    exports = "conan/boost/*", "conan/b2/*", "conan/bzip2/*", "conan/date/*", "conan/gtest/*", "conan/libbacktrace/*", "conan/libxml2/*", "conan/mqtt_cpp/*", "conan/mruby/*", "conan/nlohmann/*", "conan/oniguruma/*", "conan/rapidjson/*", "conan/openssl/*", "conan/zlib/*"
+    
     def validate(self):
         if is_msvc(self) and self.options.shared and self.settings.compiler.runtime != 'dynamic':
             raise ConanInvalidConfiguration("Shared can only be built with DLL runtime.")
@@ -149,6 +149,18 @@ class MTConnectAgentConan(ConanFile):
             self.options["openssl/*"].shared = True
         
         self.run("conan export conan/mqtt_cpp", cwd=os.path.dirname(__file__))
+        self.run("conan export --version 1.82.0 conan/boost", cwd=os.path.dirname(__file__))
+        self.run("conan export --version 3.9.1 conan/nlohmann_json", cwd=os.path.dirname(__file__))
+        self.run("conan export --version 4.10.1 conan/b2", cwd=os.path.dirname(__file__))
+        self.run("conan export --version 1.0.8 conan/bzip2", cwd=os.path.dirname(__file__))
+        self.run("conan export --version 2.4.1 conan/date", cwd=os.path.dirname(__file__))
+        self.run("conan export --version 1.10.0 conan/gtest", cwd=os.path.dirname(__file__))
+        self.run("conan export --version cci.20210118 conan/libbacktrace", cwd=os.path.dirname(__file__))
+        self.run("conan export --version 2.10.3 conan/libxml2", cwd=os.path.dirname(__file__))
+        self.run("conan export --version cci.20220822 conan/rapidjson", cwd=os.path.dirname(__file__))
+        self.run("conan export --version 6.9.8 conan/oniguruma", cwd=os.path.dirname(__file__))
+        self.run("conan export --version 3.0.8 conan/openssl", cwd=os.path.dirname(__file__))
+        self.run("conan export --version 1.3.1 conan/zlib", cwd=os.path.dirname(__file__))
         if self.options.with_ruby:
             self.run("conan export conan/mruby", cwd=os.path.dirname(__file__))
 
@@ -246,6 +258,3 @@ class MTConnectAgentConan(ConanFile):
             print(f"Calling cpack: {cpack}")
             self.run(cpack, cwd=self.build_folder)
             
-
-
-    
