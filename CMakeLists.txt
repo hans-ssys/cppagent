@@ -29,6 +29,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CXX_COMPILE_FEATURES cxx_std_17)
+link_libraries(stdc++fs)
 
 set(WITH_RUBY ON CACHE STRING "With Ruby Support")
 
